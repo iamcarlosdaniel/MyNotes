@@ -7,6 +7,8 @@
 ### Definición: 
 La instrucción switch es una estructura de control que permite seleccionar una de varias opciones basadas en el valor de una expresión. Cada opción se define en una cláusula case y se ejecuta el bloque de código correspondiente a la opción seleccionada.
 
+La funcion Switch incumple el Principio de Responsabilidad unica (Single Responsability Principie o SRP) y que hay mas de un motivo para cambiarla. Ademas, incumple el principio de de abierto/cerrado (Open Closed Principie u OCP), ya que debe cambiar cuando se anadan nuevos tipos, pero posiblemente el peor de los problemas es hay un numero ilimitado de funciones que tienen la misma estructura.
+
 ### Resultado: 
 La instrucción switch permite una forma más clara y legible de manejar múltiples opciones en lugar de usar múltiples declaraciones if-else. Además, puede mejorar el rendimiento del código al evitar la evaluación repetida de la misma expresión en múltiples declaraciones if-else.
 
@@ -64,11 +66,51 @@ En mi opinión, los puntos más importantes son los siguientes:
 
 - **Comentarios Legales**
 
+```java
+//  Copyright  (C)  2003,2004,2005  de  Object  Mentor,  Inc.  Todos  los  derechosreservados.// Publicado bajo las condiciones de la Licencia pública general GNU versión2 o posterior.
+```
+
+<br>
+
 - **Comentarios Informativos**
+
+```java
+// Devuelve una instancia del elemento Responder probado.
+protected abstract Responder responderInstance();
+```
+
+<br>
 
 - **Explicar la Intencion**
 
+```java
+public int compareTo(Object o)
+{
+    if (o instanceof WikiPagePath)
+    {
+        WikiPagePath p = (WikiPagePath) o;
+        String compressedName = StringUtil.join(names, “”);
+        String compressedArgumentName = StringUtil.join(p.names, “”);
+        return compressedName.compareTo(compressedArgumentName);
+    }
+        return 1; // somos mayores porque somos el tipo correcto.
+}
+```
+
+<br>
+
 - **Advertir las Consecuencias**
+
+```java
+public static SimpleDateFormat makeStandardHttpDateFormat()
+{
+    //SimpleDataFormat no es compatible con procesos,
+    //por lo que debe crear cada instancia de forma independiente.
+    SimpleDateFormat df = new SimpleDateFormat(“EEE, dd MMM yyyy HH:mm:ss z”);
+    df.setTimeZone (TimeZone.getTimeZone (“GMT”));
+    return df;
+}
+```
 
 ### Resultado: 
 La inclusión de comentarios de calidad mejora la legibilidad y mantenibilidad del código, permitiendo que otros desarrolladores comprendan más fácilmente su propósito y lógica. Además, ayuda a detectar errores y problemas en el código, lo que facilita su corrección y mejora la calidad del software en general.
@@ -151,14 +193,16 @@ La siguiente cita considero que es fundamental para todos los que programamos c�
 <br>
 
 **Original**
->"God is in the details."<br>
-> by architect Ludwig Mies van der Rohe
+>**"God is in the details."**<br>
+> by architect Ludwig Mies van der Rohe <br>
+>Page 9
 
 <br>
 
 **Traduccion: "Español"**
->"Dios esta en los detalles."<br>
->por el arquitecto Ludwig Mies van der Rohe
+>**"Dios esta en los detalles."**<br>
+>por el arquitecto Ludwig Mies van der Rohe <br>
+>Pagina 9
 
 <br>
 
